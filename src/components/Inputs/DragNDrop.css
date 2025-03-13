@@ -1,0 +1,48 @@
+.fis {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.file-upload-label {
+  padding-top: 36px !important;
+  background-color: #1a1a1a; /* Darker background */
+  border: 2px dashed #444; /* Dark border */
+  color: #ddd; /* Light gray text */
+  padding: 20px;
+  width: 300px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.file-upload-label:hover {
+  background-color: #222; /* Slightly lighter on hover */
+  border-color: #666;
+}
+
+.file-upload-design svg {
+  fill: #bbb; /* Lighter icon */
+  width: 50px;
+  height: 50px;
+}
+
+.browse-button {
+  color: #fff;
+  background: linear-gradient(45deg, #de0588, #460bcb);
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: inline-block;
+  margin-top: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.browse-button:hover {
+  opacity: 0.8;
+}

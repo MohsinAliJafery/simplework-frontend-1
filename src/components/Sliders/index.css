@@ -1,0 +1,15 @@
+.custom-slider .slick-prev,
+.custom-slider .slick-next {
+  position: absolute;
+  top: 80%;
+  transform: translateY(-50%);
+  z-index: 10; /* Adjust color as needed */
+}
+
+.custom-slider .slick-prev {
+  left: -40px; /* Adjust for left arrow position */
+}
+
+.custom-slider .slick-next {
+  right: -40px; /* Adjust for right arrow position */
+}
