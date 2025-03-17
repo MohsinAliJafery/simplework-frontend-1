@@ -11,5 +11,10 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: [{ find: "@", replacement: path.resolve(__dirname, "./src") }] // Use path.resolve instead
-  }
+  },
+  server: {
+    host: '0.0.0.0', // Allows external access
+    port: 3000, // Change this if needed
+    strictPort: true,
+  },
 })
