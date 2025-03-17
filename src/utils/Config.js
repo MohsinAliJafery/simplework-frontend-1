@@ -1,4 +1,4 @@
-export const BASE_URL = "https://simplework.online/api";
-export const BASE_URL_LOCAL = "https://simplework.online/api";
+export const BASE_URL = "http://145.223.101.250:3000/api";
+export const BASE_URL_LOCAL = "http://145.223.101.250:3000/api";
 // export const BASE_URL = "http://localhost:5000";
 // export const BASE_URL_LOCAL = "http://localhost:5000";
