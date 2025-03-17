@@ -14,7 +14,7 @@ export default defineConfig({
   },
   server: {
     host: '0.0.0.0', // Allows external access
-    port: 3000, // Change this if needed
+    port: 3001, // Change this if needed
     strictPort: true,
   },
 })
