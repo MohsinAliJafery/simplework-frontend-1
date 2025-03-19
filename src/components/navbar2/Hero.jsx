@@ -34,7 +34,7 @@ export default function Hero() {
       {/* Left content */}
       <div className="w-full md:w-3/5 lg:w-2/5 flex flex-col items-start gap-y-3 p-5">
         <h1 className="text-white text-4xl md:text-5xl font-bold leading-tight">
-          Call <span className="text-[#fe5284]">Simplework</span>
+          Call <span className="text-[#fe5284]">Simple</span>
           <span className="text-[#ffe35c]">work's</span> communication <br />{" "}
           <span className="text-[#a0e4f7]">experts.</span>
         </h1>
