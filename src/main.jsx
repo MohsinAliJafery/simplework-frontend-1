@@ -55,7 +55,8 @@ import ProductivityHacks from "./pages/ProductivityHacks";
 import { PersistGate } from "redux-persist/integration/react";
 import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
 import { FirebaseProvider } from "./context/useFirebase";
-
+import Success from "./pages/Transaction/Success";
+import Cancel from "./pages/Transaction/Cancel";
 // Create a QueryClient instance
 const queryClient = new QueryClient();
 
@@ -82,7 +83,10 @@ const router = createBrowserRouter([
       { path: "contact-us/form", element: <ContactForm /> },
       { path: "earnings", element: <Earnings /> },
       { path: "jobdetails/:jobId", element: <JobDetails /> },
-      { path: "earnings/manage_payment_methods", element: <ManagePaymentMethods /> },
+      {
+        path: "earnings/manage_payment_methods",
+        element: <ManagePaymentMethods />,
+      },
       { path: "chat", element: <Chat /> },
       { path: "publish-gig", element: <PublishGig /> },
       { path: "create-new-gig", element: <CreateNewGig /> },
@@ -131,6 +135,8 @@ const router = createBrowserRouter([
     element: <Layout2 />,
     children: [
       { path: "/", element: <Home /> },
+      { path: "success", element: <Success /> },
+      { path: "cancel", element: <Cancel /> },
       { path: "login", element: <Login /> },
       { path: "signup", element: <Signup /> },
       { path: "profile", element: <Profilepage /> },

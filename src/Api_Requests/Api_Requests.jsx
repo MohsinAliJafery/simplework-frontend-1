@@ -83,15 +83,16 @@ export const VerifyAdminOtpApi = (payload) =>
 export const postajob = async (payload) => {
   return await apiWithBearerToken.post("/postajob", payload);
 };
-export const getAllJobs = (filters) => apiWithBearerToken.get("/getAllJobs", { params: filters });
-export const getJobDetails = (id) => apiWithBearerToken.get(`/getJobDetail/${id}`,);
+export const getAllJobs = (filters) =>
+  apiWithBearerToken.get("/getAllJobs", { params: filters });
+export const getJobDetails = (id) =>
+  apiWithBearerToken.get(`/getJobDetail/${id}`);
 
 export const applyForJob = (jobId, payload) => {
   return apiWithBearerToken.post(`/apply/${jobId}`, payload, {
     headers: { "Content-Type": "application/json" },
   });
 };
-
 
 // Chat List
 export const SendMessageAPI = (payload) =>
@@ -119,7 +120,6 @@ export const DeleteBlogApi = (id) => api.delete("/blogs/" + id);
 export const UpdateBlogApi = (id, payload) =>
   api.patch("/blogs/" + id, payload);
 
-
 // services API
 export const AddNewServiceApiStep1 = (payload) =>
   apiWithBearerToken.post("/create-service/step-one", payload);
@@ -137,16 +137,15 @@ export const GetCurrentUserServicesApi = () =>
 export const GetFavouriteGigs = () =>
   apiWithBearerToken.get("/guest/get-favourite-gigs");
 export const AddToFavourite = (payload) =>
-  apiWithBearerToken.post("/guest/add-to-favourite",payload);
+  apiWithBearerToken.post("/guest/add-to-favourite", payload);
 export const RemoveFromFavourite = (payload) =>
-  apiWithBearerToken.post("/guest/remove-from-favourite",payload)
+  apiWithBearerToken.post("/guest/remove-from-favourite", payload);
 
 export const GetAllServiceApi = () => api.get("/get-services-data");
-export const GetSingleServiceApi = (id) => api.get(`/get-service-details/${id}`);
+export const GetSingleServiceApi = (id) =>
+  api.get(`/get-service-details/${id}`);
 export const UpdateServiceApi = (id, payload) =>
   api.patch("/services/" + id, payload);
-
-
 
 // Appoitment
 export const AddNewAppoitmentApi = (payload) =>
@@ -156,3 +155,43 @@ export const AddNewAppoitmentApi = (payload) =>
 export const getCategories = () => api.get("/get-categories");
 export const getSubCategories = (categoryId) =>
   api.get(`/get-subcategories/${categoryId}`);
+//pay order
+export const payNow = async (payload, method) => {
+  return await apiWithBearerToken.post(`/pay/${method}`, payload);
+};
+
+export const transactionSuccess = async (payload) => {
+  return await apiWithBearerToken.post(`/transaction-success`, payload);
+};
+
+export const transactionCancelled = async (payload) => {
+  return await apiWithBearerToken.post(`/transaction-cancel`, payload);
+};
+//fetch Wallet
+export const fetchWallet = async () => {
+  return await apiWithBearerToken.get(`/wallet`);
+};
+
+//stripe connect
+export const stripeConnect = async (payload) => {
+  return await apiWithBearerToken.post(`/stripe/connect`, payload);
+};
+
+//paypal connect
+export const paypalConnect = async (payload) => {
+  return await apiWithBearerToken.post(`/paypal/connect`, payload);
+};
+
+//withdraw money via paypal
+export const withdrawViaPaypal = async () => {
+  return await apiWithBearerToken.post(`/withdraw/paypal`);
+};
+
+export const acceptOrder = async (oderId) => {
+  return await apiWithBearerToken.patch(`/${oderId}/accept`);
+};
+
+export const withdrawViaStripe = async () => {
+  console.log("here");
+  return await apiWithBearerToken.post(`/withdraw/stripe`);
+};

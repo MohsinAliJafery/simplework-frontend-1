@@ -5,17 +5,18 @@ import {
   faCircle,
   faCloudUploadAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import axios from "axios";
 
 export default function SubmittedOrder() {
-  const { gig, selectedPlan,loading, error,requirements } = useSelector((state) => state.singlegig);
-
-  const { _id }= JSON.parse(localStorage.getItem('user'))
+  const { gig, selectedPlan, loading, error, requirements } = useSelector(
+    (state) => state.singlegig
+  );
+  const navigate = useNavigate();
+  const { _id } = JSON.parse(localStorage.getItem("user"));
   const handleOrder = async () => {
-
     try {
       const formData = new FormData();
       formData.append("buyerId", _id);
@@ -31,7 +32,6 @@ export default function SubmittedOrder() {
       formData.append("paymentIntentId", null);
       formData.append("gigImage", gig?.servicesImages[0].imgUrl);
 
-      
       if (requirements) {
         formData.append("file", requirements);
       }
@@ -40,14 +40,20 @@ export default function SubmittedOrder() {
         console.log(`${pair[0]}: ${pair[1]}`);
       }
 
-      const response = await axios.post("http://localhost:5000/api/orders/create", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.post(
+        "http://localhost:5000/api/orders/create",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
       if (response.data.success) {
         toast.success("Order created successfully!");
+        const orderId = response.data.data._id;
+        navigate(`/payorder?orderId=${orderId}`);
       } else {
         toast.error("Failed to create order. Please try again.");
       }
@@ -55,7 +61,6 @@ export default function SubmittedOrder() {
       console.error("Error creating order:", error);
       toast.error("An error occurred while creating the order.");
     }
-
   };
 
   return (
@@ -97,12 +102,10 @@ export default function SubmittedOrder() {
         <div className="flex flex-row justify-between gap-x-[420px] ">
           <h1 className="text-2xl font-semibold">{selectedPlan}</h1>
           <h1 className="text-2xl font-semibold">
-          {gig?.pricing?.[selectedPlan]?.price || 'No plan selected'}
+            {gig?.pricing?.[selectedPlan]?.price || "No plan selected"}
           </h1>
         </div>
-        <p className="text-xl text-start">
-         {gig?.category}
-        </p>
+        <p className="text-xl text-start">{gig?.category}</p>
         {/* <div className="flex flex-row justify-start items-start gap-x-3">
           <p>Gig Quantity</p>
           <div className="flex flex-row justify-start gap-x-3">
@@ -123,14 +126,20 @@ export default function SubmittedOrder() {
         </div>
         <h1 className="text-xl font-bold mt-10">{selectedPlan} Package</h1>
         <ul class="mt-4">
-          <li>{ gig?.pricing?.[selectedPlan]?.packageDetails || 'No plan selected' }</li>
-          <li>{ gig?.pricing?.[selectedPlan]?.packageName || 'No plan selected' }</li>
+          <li>
+            {gig?.pricing?.[selectedPlan]?.packageDetails || "No plan selected"}
+          </li>
+          <li>
+            {gig?.pricing?.[selectedPlan]?.packageName || "No plan selected"}
+          </li>
         </ul>
         <h1 className="text-xl font-bold mt-10">
-        { gig?.pricing?.[selectedPlan]?.delivery || 'No plan selected' }
+          {gig?.pricing?.[selectedPlan]?.delivery || "No plan selected"}
         </h1>
-        <h1 className="text-xl font-bold mt-10"> revisions 
-        { gig?.pricing?.[selectedPlan]?.revisions || 'No plan selected' }
+        <h1 className="text-xl font-bold mt-10">
+          {" "}
+          revisions
+          {gig?.pricing?.[selectedPlan]?.revisions || "No plan selected"}
         </h1>
       </div>
 
@@ -142,10 +151,10 @@ export default function SubmittedOrder() {
         Continue
       </Link> */}
       <button
-        onClick={ handleOrder }
+        onClick={handleOrder}
         className="bg-gradient-to-r text-center from-pink-500 to-purple-500 w-[350px] text-white text-lg font-semibold mt-8 px-8 py-3 rounded-full"
       >
-       order
+        order
       </button>
     </div>
   );

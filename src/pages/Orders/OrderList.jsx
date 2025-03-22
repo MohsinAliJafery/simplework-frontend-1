@@ -8,14 +8,15 @@ const OrderList = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const { _id }= JSON.parse(localStorage.getItem('user'))
+  const { _id } = JSON.parse(localStorage.getItem("user"));
 
   const isSeller = location.pathname.includes("/seller/orders");
   const isUser = location.pathname.includes("/user/orders");
 
   const fetchOrders = async () => {
     try {
-      const userId = _id; 
+      const userId = _id;
+      console.log(userId);
       const response = await axios.get(`http://localhost:5000/api/orders`, {
         params: {
           userId,
@@ -34,7 +35,6 @@ const OrderList = () => {
   useEffect(() => {
     fetchOrders();
   }, []);
-
 
   const statusCounts = {
     1: orders.filter((order) => order.status === "Active").length,
@@ -77,16 +77,23 @@ const OrderList = () => {
         </div>
         <div className="flex flex-col h-fit py-5 px-5 w-full bg-[#FFFFFF33] rounded-[20px] overflow-auto">
           <div className="border-b-[1px] border-b-white pb-3 font-poppins px-2 uppercase">
-            {["Active", "Pending", "Delivered", "Completed", "Cancelled"][
-              currentStatus - 1
-            ]}{" "}
+            {
+              ["Active", "Pending", "Delivered", "Completed", "Cancelled"][
+                currentStatus - 1
+              ]
+            }{" "}
             Orders
           </div>
           <div className="flex flex-col h-fit w-full bg-transparent rounded-[20px] overflow-x-auto">
             {loading ? (
               <div className="text-center py-5">Loading orders...</div>
             ) : (
-              <OrderTable data={filteredOrders} isSeller={isSeller} isUser={isUser} onStatusChange={fetchOrders} />
+              <OrderTable
+                data={filteredOrders}
+                isSeller={isSeller}
+                isUser={isUser}
+                onStatusChange={fetchOrders}
+              />
             )}
           </div>
         </div>
