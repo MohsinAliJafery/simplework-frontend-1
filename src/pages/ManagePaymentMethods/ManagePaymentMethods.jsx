@@ -80,7 +80,7 @@ const ManagePaymentMethods = () => {
   const PAYPAL_CLIENT_ID =
     "AVcluyEqETDUoa8VfAdXISKoHFkLs6I6ocyqRZ-1GGoOBxKA8PNwubFvaMSRNOPnwuMT2Gr3Ke3lzERg";
   const REDIRECT_URI =
-    "https://8518-119-73-99-41.ngrok-free.app/seller/earnings/manage_payment_methods";
+    "https://30be-119-73-99-41.ngrok-free.app/seller/earnings/manage_payment_methods";
   const USER_ID = userData?._id;
   const connectPayPal = () => {
     const url = `https://www.sandbox.paypal.com/connect?flowEntry=static&client_id=${PAYPAL_CLIENT_ID}&scope=openid%20email%20profile&redirect_uri=${REDIRECT_URI}&state=${USER_ID}_paypal`;
@@ -88,7 +88,7 @@ const ManagePaymentMethods = () => {
   };
 
   const handleStripeConnect = async () => {
-    const STRIPE_CLIENT_ID = "ca_RgeUKWzypJ4Fo1eoB2ksdtLAK396UMXA";
+    const STRIPE_CLIENT_ID = "ca_Rr8FWuL8Rg4Egb3cyitBadylJmc9enxX";
     const USER_ID = userData?._id;
     const stripeAuthUrl = `https://connect.stripe.com/oauth/authorize?response_type=code&client_id=${STRIPE_CLIENT_ID}&scope=read_write&state=${USER_ID}_stripe`;
     window.location.href = stripeAuthUrl;

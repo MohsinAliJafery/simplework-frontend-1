@@ -8,6 +8,7 @@ export default function Success() {
   const [searchParams] = useSearchParams();
   const orderId = searchParams.get("orderId");
   const transactionId = searchParams.get("transactionId");
+
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("Wallet Connected");
 
