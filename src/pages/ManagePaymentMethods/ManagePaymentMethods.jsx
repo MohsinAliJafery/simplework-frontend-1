@@ -30,7 +30,7 @@ const ManagePaymentMethods = () => {
     if (code && state) {
       if (state === `${userData?._id}_paypal`) {
         handlePaypalCallback(code);
-      } else if (state === `${userData?._id}_stripe`) {
+      } else if (state === `${userData?._id}`) {
         handleStripeCallback(code, state);
       }
     } else {
@@ -77,20 +77,19 @@ const ManagePaymentMethods = () => {
   };
 
   //To be Removed
-  const PAYPAL_CLIENT_ID =
-    "AVcluyEqETDUoa8VfAdXISKoHFkLs6I6ocyqRZ-1GGoOBxKA8PNwubFvaMSRNOPnwuMT2Gr3Ke3lzERg";
-  const REDIRECT_URI =
-    "https://30be-119-73-99-41.ngrok-free.app/seller/earnings/manage_payment_methods";
+  const PAYPAL_CLIENT_ID = import.meta.env.VITE_PAYPAL_CLIENT_ID;
+  const REDIRECT_URI = import.meta.env.VITE_PAYPAL_REDIRECT_URI;
   const USER_ID = userData?._id;
   const connectPayPal = () => {
+    console.log(REDIRECT_URI);
     const url = `https://www.sandbox.paypal.com/connect?flowEntry=static&client_id=${PAYPAL_CLIENT_ID}&scope=openid%20email%20profile&redirect_uri=${REDIRECT_URI}&state=${USER_ID}_paypal`;
     window.location.href = url;
   };
 
   const handleStripeConnect = async () => {
-    const STRIPE_CLIENT_ID = "ca_Rr8FWuL8Rg4Egb3cyitBadylJmc9enxX";
+    const STRIPE_CLIENT_ID = import.meta.env.VITE_STRIPE_CLIENT_ID;
     const USER_ID = userData?._id;
-    const stripeAuthUrl = `https://connect.stripe.com/oauth/authorize?response_type=code&client_id=${STRIPE_CLIENT_ID}&scope=read_write&state=${USER_ID}_stripe`;
+    const stripeAuthUrl = `https://connect.stripe.com/oauth/authorize?response_type=code&client_id=${STRIPE_CLIENT_ID}&scope=read_write&state=${USER_ID}`;
     window.location.href = stripeAuthUrl;
   };
 
@@ -105,7 +104,7 @@ const ManagePaymentMethods = () => {
     const response = await withdrawViaStripe();
 
     if (response.data.success) {
-      alert("Money is Withdrawn into paypal");
+      alert("Money is Withdrawn into stripe");
     }
   };
 

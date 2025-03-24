@@ -17,7 +17,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { acceptOrder } from "@/Api_Requests/Api_Requests";
-
+import { BASE_URL, BASE_URL_LOCAL } from "../../utils/Config";
 const OrderTable = ({ data, onStatusChange, isSeller, isUser }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedOrder, setSelectedOrder] = useState(null);
@@ -52,9 +52,8 @@ const OrderTable = ({ data, onStatusChange, isSeller, isUser }) => {
         return;
       } else {
         try {
-          console.log("here");
           const response = await axios.post(
-            "http://localhost:5000/api/orders/change-status",
+            `${BASE_URL}/api/orders/change-status`,
             {
               orderId: selectedOrder,
               newStatus,
