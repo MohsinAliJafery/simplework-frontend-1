@@ -53,7 +53,7 @@ const OrderTable = ({ data, onStatusChange, isSeller, isUser }) => {
       } else {
         try {
           const response = await axios.post(
-            `${BASE_URL}/api/orders/change-status`,
+            `${BASE_URL}/orders/change-status`,
             {
               orderId: selectedOrder,
               newStatus,
