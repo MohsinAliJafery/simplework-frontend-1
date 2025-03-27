@@ -11,7 +11,7 @@ export default function Hero() {
   const dispatch = useDispatch();
   useEffect(() => {
     if (location.pathname !== "/gigList") {
-      console.log(location.pathname, "---------");
+      console.log(location.pathname,'---------')
       setSearch("");
       dispatch(resetSearchQuery());
     }
@@ -24,11 +24,11 @@ export default function Hero() {
   };
 
   const handelChangeLocation = () => {
-    if (location.pathname == "/") {
-      navigate("/gigList");
+    if (location.pathname == '/') {
+      navigate('/gigList') 
     }
-  };
-  const navigate = useNavigate();
+  }
+const navigate=useNavigate()
   return (
     <div className="bg-[#1c081c] h-auto md:h-[90vh] flex flex-col md:flex-row justify-center items-center gap-y-5 md:gap-x-5">
       {/* Left content */}
@@ -45,43 +45,30 @@ export default function Hero() {
         </p>
         {/* Search input */}
         <div className="flex items-center justify-between border w-full md:w-3/4 border-gray-500 rounded-2xl px-3">
-          <input
-            type="text"
-            placeholder="Search..."
-            onChange={handleSearchChange}
-            value={search}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                e.preventDefault();
-                handelChangeLocation();
-              }
-            }}
-            className="p-2 bg-transparent text-white border-white outline-none placeholder-gray-300 md:w-[12vw] xl:w-full md:text-[12px] xl:text-lg"
-          />
-          <img
-            src={Search}
-            alt="Search Icon"
-            className="w-5 h-5 cursor-pointer"
-            onClick={handelChangeLocation}
-          />
+        <input
+              type="text"
+              placeholder="Search..."
+              onChange={handleSearchChange}
+              value={search}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();    
+                  handelChangeLocation(); 
+                }
+              }}
+              className="p-2 bg-transparent text-white border-white outline-none placeholder-gray-300 md:w-[12vw] xl:w-full md:text-[12px] xl:text-lg"
+            />
+          <img src={Search} alt="Search Icon" className="w-5 h-5 cursor-pointer"  onClick={handelChangeLocation}/>
         </div>
         {/* Buttons */}
         <div className="flex flex-col md:flex-row gap-y-3 md:gap-x-5 mt-2">
           <button className="bg-pink-500 flex flex-row items-center text-white gap-x-2 px-6 md:px-12 py-4 md:py-5 rounded-lg">
             <img src={Giglistbox} alt="Gig Icon" className="w-6 h-6" />
-            <h1
-              className="text-lg md:text-2xl font-bold whitespace-nowrap"
-              onClick={() => {
-                navigate("/gigList");
-              }}
-            >
+            <h1 className="text-lg md:text-2xl font-bold whitespace-nowrap" onClick={()=>{navigate('/gigList')}}>
               Gig Listing
             </h1>
           </button>
-          <Link
-            to="seller/findjob"
-            className="bg-[#460bcb] flex flex-row items-center w-fit text-white gap-x-2 px-6 md:px-8 py-4 md:py-5 rounded-lg"
-          >
+          <Link to='seller/findjob' className="bg-[#460bcb] flex flex-row items-center w-fit text-white gap-x-2 px-6 md:px-8 py-4 md:py-5 rounded-lg">
             <img src={Giglistbox} alt="Seller Job Icon" className="w-6 h-6" />
             <h1 className="text-lg md:text-2xl font-bold whitespace-nowrap">
               Seller Job Listing

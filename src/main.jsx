@@ -57,8 +57,41 @@ import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
 import { FirebaseProvider } from "./context/useFirebase";
 import Success from "./pages/Transaction/Success";
 import Cancel from "./pages/Transaction/Cancel";
+import socket from "./utils/socket";
+import { useEffect } from "react";
+import { useState } from "react";
+//import { s } from "vite/dist/node/types.d-aGj9QkWt";
+
 // Create a QueryClient instance
 const queryClient = new QueryClient();
+//set user id
+const SocketHandler = () => {
+  const [userId, setUserId] = useState("");
+  useEffect(() => {
+    try {
+      const userData1 = JSON.parse(localStorage.getItem("user"));
+      const userId1 = userData1?._id;
+      if (userId1) setUserId(userId1);
+      console.log("User ID:", userId);
+
+      console.log("Connected to socket");
+
+      if (userId) {
+        socket.emit("setUserId", userId);
+      }
+
+      socket.on("connected", (data) => {
+        console.log("User status updated", data);
+      });
+      socket.on("disconnect", (reason) => {
+        console.log("Socket disconnected:", reason);
+      });
+    } catch (error) {
+      console.log("Socket Error:", error);
+    }
+  }, [userId]);
+  return null;
+};
 
 const router = createBrowserRouter([
   {
@@ -139,7 +172,7 @@ const router = createBrowserRouter([
       { path: "cancel", element: <Cancel /> },
       { path: "login", element: <Login /> },
       { path: "signup", element: <Signup /> },
-      { path: "profile", element: <Profilepage /> },
+      { path: "profile/:id", element: <Profilepage /> },
       { path: "giglist", element: <Giglist /> },
       { path: "aboutseller/:gigId", element: <AboutSeller /> },
       { path: "orderdetail", element: <OrderDetails /> },
@@ -165,7 +198,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <PersistGate loading={null} persistor={persistor}>
         <FirebaseProvider>
           <QueryClientProvider client={queryClient}>
-            {" "}
+            <SocketHandler />
             <RouterProvider router={router} />
             <Toaster position="top-right" reverseOrder={false} />
           </QueryClientProvider>

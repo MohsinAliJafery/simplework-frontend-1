@@ -73,7 +73,7 @@ export default function Navbar() {
   };
 
   const handleLogout = async () => {
-    const response = await logout();
+    const response = await logout(userData._id);
     console.log("responseresponse", response);
     if (response.status === 200) {
       dispatch(clearUser());

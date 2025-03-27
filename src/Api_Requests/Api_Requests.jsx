@@ -71,7 +71,8 @@ export const forgetPasswordStepTwo = (payload) =>
   api.post("/forget-password/verify-code", payload);
 export const resetPassword = (payload) =>
   api.post("/forget-password/reset-password", payload);
-export const logout = (payload) => api.get("/logout");
+
+export const logout = (id) => api.get(`/logout/${id}`);
 
 export const UpdateStatusApi = (payload) =>
   api.patch("/appointment/status", payload);
@@ -195,3 +196,9 @@ export const withdrawViaStripe = async () => {
   console.log("here");
   return await apiWithBearerToken.post(`/withdraw/stripe`);
 };
+
+//get profile data
+export const getProfileData = (id) =>
+  api.get(`/get-profile`, { params: { userid: id } });
+//delete profile data
+export const deleteAccount = (id) => api.post(`/delete-profile/${id}`);

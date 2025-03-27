@@ -9,7 +9,7 @@ import { updateUser } from "../store/Slices/userSlice";
 
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const onSubmit = async (e) => {
     setIsLoading(true);
@@ -82,13 +82,10 @@ export default function Login() {
             />
 
             <div className="mb-6 text-left max-w-[400px] w-full">
-              <Link to='/forgot-password'>
-              <button
-                type="button"
-                className="text-red-500"
-              >
-                Forgot Password?
-              </button>
+              <Link to="/forgot-password">
+                <button type="button" className="text-red-500">
+                  Forgot Password?
+                </button>
               </Link>
             </div>
             <button

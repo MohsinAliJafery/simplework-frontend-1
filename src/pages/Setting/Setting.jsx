@@ -1,20 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SideMenu from "../../components/SideMenu/SideMenu";
 import Account from "./Account";
 import Security from "./Security";
 
 const Setting = () => {
   const [CurrentStatus, setCurrentStatus] = useState(1);
-  const [isLoading, setIsLoading]=useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     profileImage: null,
     imagePreview: null,
-    currentPassword:"",
-    newPassword:"",
+    currency: "",
+    currentPassword: "",
+    newPassword: "",
     confirmPassword: "",
+    payment: "",
   });
+  useEffect(() => {
+    //const userData = JSON.parse(localStorage.getItem("user"));
+    if (formData) {
+      console.log(formData);
+    }
+  }, [formData]);
 
   return (
     <div className="px-5 flex w-full">
@@ -46,9 +54,19 @@ const Setting = () => {
           </div>
         </div>
         {CurrentStatus === 1 ? (
-          <Account isLoading={isLoading} setIsLoading={setIsLoading} formData={formData} setFormData={setFormData} />
+          <Account
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
+            formData={formData}
+            setFormData={setFormData}
+          />
         ) : (
-          <Security isLoading={isLoading} setIsLoading={setIsLoading}  formData={formData} setFormData={setFormData} />
+          <Security
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
+            formData={formData}
+            setFormData={setFormData}
+          />
         )}
       </div>
     </div>

@@ -11,7 +11,7 @@ import { logout } from "../../Api_Requests/Api_Requests";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { clearUser } from "../../store/Slices/userSlice";
-import Search from "../../assets/search-normal.png"
+import Search from "../../assets/search-normal.png";
 
 const Navbar = () => {
   useEffect(() => {
@@ -41,10 +41,10 @@ const Navbar = () => {
 
   const navigate = useNavigate();
   const handleLogout = async () => {
-    const response = await logout();
+    const response = await logout(userData._id);
     if (response.status === 200) {
-      dispatch(clearUser()); 
-      localStorage.removeItem('user')
+      dispatch(clearUser());
+      localStorage.removeItem("user");
       localStorage.removeItem("token");
       handleCloseCm();
       navigate("/");
@@ -96,27 +96,27 @@ const Navbar = () => {
         <div className="flex items-center gap-x-4">
           {/* <SearchBoxNav /> */}
           <div className="relative lg:w-2/2">
-           <input
-                        type="text"
-                        placeholder="Search..."
-                        // onChange={handleSearchChange}
-                        // value={search}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter") {
-                            e.preventDefault();    
-                            handelChangeLocation(); 
-                          }
-                        }}
-                        className="p-2 bg-transparent text-white border-b border-white outline-none placeholder-gray-300 md:w-[12vw] xl:w-full md:text-[12px] xl:text-lg"
-                      /> 
-          
-                      <img
-                         src={Search}
-                        alt="Search Icon"
-                        className="absolute right-0 top-3 w-5 h-5 md:w-4 md:h-4 xl:w-5 xl:h-5 cursor-pointer"
-                       // onClick={handelChangeLocation}
-                      />
-                </div>      
+            <input
+              type="text"
+              placeholder="Search..."
+              // onChange={handleSearchChange}
+              // value={search}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  handelChangeLocation();
+                }
+              }}
+              className="p-2 bg-transparent text-white border-b border-white outline-none placeholder-gray-300 md:w-[12vw] xl:w-full md:text-[12px] xl:text-lg"
+            />
+
+            <img
+              src={Search}
+              alt="Search Icon"
+              className="absolute right-0 top-3 w-5 h-5 md:w-4 md:h-4 xl:w-5 xl:h-5 cursor-pointer"
+              // onClick={handelChangeLocation}
+            />
+          </div>
           <MdOutlineMailOutline className="text-2xl cursor-pointer" />
           {/* Notifications */}
           <Popover
@@ -217,7 +217,7 @@ const Navbar = () => {
             onClick={handleClick}
           />
           <img
-           src={userData?.profileImage || "/navimg.png"}
+            src={userData?.profileImage || "/navimg.png"}
             className="w-[50px] h-[50px] rounded-full cursor-pointer"
             onClick={handleClickCm}
           />
@@ -271,9 +271,10 @@ const Navbar = () => {
                   <div className="hover:bg-[#2f273b] cursor-pointer p-2 px-6 w-full">
                     Messages
                   </div>
-                  <Link 
-                  to='settings'
-                  className="hover:bg-[#2f273b] cursor-pointer p-2 px-6 w-full">
+                  <Link
+                    to="settings"
+                    className="hover:bg-[#2f273b] cursor-pointer p-2 px-6 w-full"
+                  >
                     Settings
                   </Link>
                   <div className="flex w-full justify-center items-center">

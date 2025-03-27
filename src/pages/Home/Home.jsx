@@ -14,6 +14,7 @@ function Home() {
         const data = response.data;
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.userData));
+        Navigate("/");
       }
     }
   };

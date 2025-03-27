@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SideMenu from "../../components/SideMenu/SideMenu";
 import { FaStar } from "react-icons/fa6";
 import { FaEdit } from "react-icons/fa";
@@ -7,6 +7,24 @@ import Review from "./Review";
 
 const Profile = () => {
   const [CurrentStatus, setCurrentStatus] = useState(1);
+  const [userData, setUserData] = useState({
+    name: "Ali Khan",
+    username: "AliKhan323",
+    email: "test@gmail.com",
+    location: "Canada",
+    status: "(Level 2)",
+    languages: "English",
+    description:
+      "Lorem ipsum dolor sit amet consectetur. Amet Molestie augue amet sed facilisi purus Augue commodo in. Viverra convallis nisi malesuada tempor fermentum venenatis tristique id amet hendrerit. Tempor commodo amet neque  sem urna arcu. Malesuada ullamcorper est Lorem ullamcorper tristique et. Morbi aliquet fringilla vulputate vulputate magnis. Elementum arcu ultrices sed facilisis porta. Pellentesque enim non dolor sagittis tortor amet.",
+    servicesExperties: "Web Development, App Development",
+    education: "BSCS",
+  });
+  useEffect(() => {
+    const userData1 = JSON.parse(localStorage.getItem("user"));
+    if (userData1) {
+      console.log(userData1);
+    }
+  }, []);
   return (
     <div className="px-5 flex w-full">
       <SideMenu />
@@ -15,8 +33,8 @@ const Profile = () => {
           <div className="bg-[#FFFFFF33] h-fit  rounded-2xl p-5 w-[300px]">
             <div className="flex flex-col text-white justify-center items-center">
               <img src="/customerimg.png" alt="" className="w-[100px] mb-5" />
-              <div className="pb-1">Ali Khan</div>
-              <div className="text-sm font-thin pb-1">@alikhan3344</div>
+              <div className="pb-1">{userData.name}</div>
+              <div className="text-sm font-thin pb-1">@{userData.username}</div>
               <div className="text-[1rem] font-semibold flex mb-2 mt-1 gap-x-2 ">
                 <FaStar className="text-[#FFE500] text-xl" /> 4.5{" "}
                 <span className="text-sm font-thin"> (23)</span>
